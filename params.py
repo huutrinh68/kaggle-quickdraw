@@ -1,6 +1,5 @@
 from common import *
 
-root_path = '/home/user/Downloads/quickdraw'
 DP_DIR = os.path.join(root_path,'../input/shuffle-csvs/')
 INPUT_DIR = '../input/quickdraw-doodle-recognition/'
 
