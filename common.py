@@ -6,6 +6,9 @@ import ast
 import datetime as dt
 import argparse
 
+# slack nofify
+from slackclient import SlackClient
+
 # matplot and graph
 import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = [16, 10]
