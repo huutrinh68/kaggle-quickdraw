@@ -11,5 +11,3 @@ from __future__ import division
 __author__ = """Nguyen Huu Trinh"""
 __email__ = 'trinhnh1@fsoft.com.vn'
 __version__ = '0.0.1'
-
-
