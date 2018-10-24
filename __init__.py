@@ -1,8 +1,6 @@
 """
 This project include source code for quick-draw kaggle compettion.
-
     :platform: ubuntu 16.04
-    
 """
 
 from __future__ import absolute_import
