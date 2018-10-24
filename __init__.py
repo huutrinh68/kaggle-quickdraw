@@ -1,5 +1,6 @@
 """
 This project include source code for quick-draw kaggle compettion.
+Information about this compettion: https://www.kaggle.com/c/quickdraw-doodle-recognition
     :platform: ubuntu 16.04
 """
 
