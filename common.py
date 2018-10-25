@@ -17,9 +17,13 @@ import seaborn as sns
 
 # as usual
 import seaborn as sns
-import cv2
 import pandas as pd
 import numpy as np
+
+# image processing and augmentation
+from PIL import Image
+import albumentations
+import cv2
 
 # tensorflow and keras
 import tensorflow as tf
