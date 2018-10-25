@@ -33,7 +33,6 @@ from albumentations import (
     Resize, Normalize, Rotate, RandomCrop, Crop, CenterCrop, DualTransform
 )
 
-
 # tensorflow and keras
 import tensorflow as tf
 from tensorflow import keras
