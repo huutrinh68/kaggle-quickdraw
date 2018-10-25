@@ -30,7 +30,7 @@ def show_imgs(imgs, row, col):
         plt.tick_params(labelbottom=False)  # remove x axis
         plt.tick_params(labelleft=False)    # remove y axis
         plt.imshow(img)
-    # plt.show()
+    plt.show()
 
 if __name__ == '__main__':
     # files = os.listdir(os.path.join(root_path, 'data'))
@@ -41,20 +41,21 @@ if __name__ == '__main__':
     # input image, Pil format
     img = image.load_img(img_path, color_mode='rgb', target_size=None, interpolation='nearest')
     # pil format to array format
-    x = image.img_to_array(img)
-    #(h, w, 3) -> (1, h, w, 3)
-    x = x.reshape((1,) + x.shape)
+    array_data = image.img_to_array(img)
+    #(height, width, 3) -> (1, height, width, 3)
+    array_data = array_data.reshape((1,) + array_data.shape)
 
     max_img_num = 16
     imgs = []
 
-    for i, d in enumerate(datagen.flow(x, batch_size=1)):
-        # array format to pil format and then save to saved_folder
+    for i, d in enumerate(datagen.flow(array_data, batch_size=1)):
+        # array format to pil format
         img = image.array_to_img(d[0], scale=True)
-        img_name = os.path.join(saved_folder, str(i) + '.png')
-        # image.save_img(img_name, x)
+        # then save to saved_folder
+        img_name = os.path.join(saved_folder, str(i+1) + '.png')
+        image.save_img(img_name, img)
         imgs.append(img)
-        if len(imgs) % max_img_num == 0:
+        if (len(imgs) % max_img_num) == 0:
             break
 
-    show_imgs(imgs, row=4, col=4)
+    # show_imgs(imgs, row=4, col=4)
