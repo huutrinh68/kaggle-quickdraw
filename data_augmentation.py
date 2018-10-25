@@ -32,7 +32,7 @@ def show_imgs(imgs, row, col):
         plt.imshow(img)
     plt.show()
 
-if __name__ == '__main__':
+def main():
     # files = os.listdir(os.path.join(root_path, 'data'))
     img_path = os.path.join(root_path, 'data/lena.jpeg')
     saved_folder = os.path.join(root_path, 'data/augmented_data')
@@ -59,3 +59,8 @@ if __name__ == '__main__':
             break
 
     # show_imgs(imgs, row=4, col=4)
+
+
+if __name__ == '__main__':
+    main()
+    
