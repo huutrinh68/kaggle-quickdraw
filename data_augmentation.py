@@ -40,8 +40,10 @@ def main():
 
     # input image, Pil format
     img = image.load_img(img_path, color_mode='rgb', target_size=None, interpolation='nearest')
+
     # pil format to array format
     array_data = image.img_to_array(img)
+    
     #(height, width, 3) -> (1, height, width, 3)
     array_data = array_data.reshape((1,) + array_data.shape)
 
@@ -51,6 +53,7 @@ def main():
     for i, d in enumerate(datagen.flow(array_data, batch_size=1)):
         # array format to pil format
         img = image.array_to_img(d[0], scale=True)
+
         # then save to saved_folder
         img_name = os.path.join(saved_folder, str(i+1) + '.png')
         image.save_img(img_name, img)
