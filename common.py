@@ -33,8 +33,6 @@ from albumentations import (
     Resize, Normalize, Rotate, RandomCrop, Crop, CenterCrop, DualTransform
 )
 
-# Opensource lib
-from cnn_finetune import make_model
 
 # tensorflow and keras
 import tensorflow as tf
