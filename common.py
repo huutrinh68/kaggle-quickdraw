@@ -19,6 +19,7 @@ import seaborn as sns
 import seaborn as sns
 import pandas as pd
 import numpy as np
+from tqdm import tqdm
 
 # image processing and augmentation
 from keras.preprocessing import image
