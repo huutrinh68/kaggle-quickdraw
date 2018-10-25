@@ -66,7 +66,6 @@ config.gpu_options.per_process_gpu_memory_fraction = 0.5
 set_session(tf.Session(config=config))
 ###################################
 
-# root_path = '/home/trinhnh1/Documents/train_data/kaggle/quick_draw/'
-root_path = './'
+root_path = '/home/trinhnh1/Documents/train_data/kaggle/quick_draw/'
 
 start = dt.datetime.now()
