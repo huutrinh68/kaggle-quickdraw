@@ -58,15 +58,15 @@ def main():
     # show generated img
     #show_img(train_datagen)
 
+    # load model
+    model = load_model()
+    #print(model.summary())
+
     # define callback
     callbacks = [
     ReduceLROnPlateau(monitor='val_categorical_accuracy', factor=0.5, patience=5,
                       min_delta=0.005, mode='max', cooldown=3, verbose=1)
     ]
-
-    # load model
-    model = load_model()
-    #print(model.summary())
 
     # train model
     hists = []
@@ -104,4 +104,3 @@ def main():
     
 if __name__ == '__main__':
     main()
-

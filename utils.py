@@ -1,6 +1,7 @@
 from common import *
 from params import *
 
+
 def df_to_image_array_xd(df, size, lw=6, time_color=True):
     df['drawing'] = df['drawing'].apply(ast.literal_eval)
     x = np.zeros((len(df), size, size, 1))
