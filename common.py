@@ -47,23 +47,16 @@ from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCh
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.applications import MobileNet
 from tensorflow.keras.applications.mobilenet import preprocess_input
+from keras.callbacks import LambdaCallback
 
 ###################################
 # limit GPU when training data
-from keras.backend.tensorflow_backend import set_session
-# import horovod.keras as hvd
-# # horovod: initialize Horovod.
-# hvd.init()
-# tensorFlow wizardry
+import tensorflow as tf
+from keras import backend as K
 config = tf.ConfigProto()
-# don't pre-allocate memory; allocate as-needed
-config.gpu_options.allow_growth = True
-# only allow a total of half the GPU memory to be allocated
-config.gpu_options.per_process_gpu_memory_fraction = 0.5
-# device list
-# config.gpu_options.visible_device_list = str(hvd.local_rank())
-# create a session with the above options specified.
-set_session(tf.Session(config=config))
+config.gpu_options.per_process_gpu_memory_fraction = 0.75
+sess = tf.Session(config=config)
+K.set_session(sess)
 ###################################
 
 root_path = '/home/trinhnh1/Documents/train_data/kaggle/quick_draw/'
