@@ -58,8 +58,7 @@ def main():
             df = df.sort_values(by='rnd').drop('rnd', axis=1)
             df.to_csv(filename + '.gz', compression='gzip', index=False)
             os.remove(filename)
-
-    print(df.shape)
+            print(df.shape)
 
     end = dt.datetime.now()
     print('Latest run {}.\nTotal time {}s'.format(end, (end - start).seconds))
