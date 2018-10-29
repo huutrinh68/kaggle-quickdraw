@@ -9,6 +9,8 @@ def parser():
     parser = argparse.ArgumentParser(description='Hello there')
     parser.add_argument('--batch-size', type=int, default=32, metavar='N',
                         help='input batch size for training (default: 32)')
+    parser.add_argument('--steps', type=int, default=800, metavar='N',
+                        help='number of steps (default: 800)')
     parser.add_argument('--epochs', type=int, default=30, metavar='N',
                         help='number of epochs to train (default: 1)')
     parser.add_argument('--fold', type=int, default=0, metavar='N',
