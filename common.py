@@ -49,6 +49,10 @@ from tensorflow.keras.applications import MobileNet
 from tensorflow.keras.applications.mobilenet import preprocess_input
 from keras.callbacks import LambdaCallback
 
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
+
 ###################################
 # limit GPU when training data
 import tensorflow as tf
