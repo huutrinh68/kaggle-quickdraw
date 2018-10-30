@@ -10,7 +10,5 @@ BASE_SIZE = 256
 NCSVS = 100
 NCATS = 340
 
-STEPS = 800
-EPOCHS = 100
 size = 64
 batchsize = 680
