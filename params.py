@@ -10,5 +10,6 @@ BASE_SIZE = 256
 NCSVS = 100
 NCATS = 340
 
-size = 64
+# size = 64
+size = 197
 batchsize = 680

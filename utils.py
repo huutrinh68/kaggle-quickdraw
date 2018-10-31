@@ -4,9 +4,12 @@ from params import *
 
 def df_to_image_array_xd(df, size, lw=6, time_color=True):
     df['drawing'] = df['drawing'].apply(ast.literal_eval)
-    x = np.zeros((len(df), size, size, 1))
+    # x = np.zeros((len(df), size, size, 1))
+    x = np.zeros((len(df), size, size, 3))
     for i, raw_strokes in enumerate(df.drawing.values):
         x[i, :, :, 0] = draw_cv2(raw_strokes, size=size, lw=lw, time_color=time_color)
+        x[i, :, :, 1] = draw_cv2(raw_strokes, size=size, lw=lw, time_color=time_color)
+        x[i, :, :, 2] = draw_cv2(raw_strokes, size=size, lw=lw, time_color=time_color)
     x = preprocess_input(x).astype(np.float32)
     return x
 
@@ -29,9 +32,14 @@ def image_generator_xd(size, batchsize, ks, lw=6, time_color=True):
             filename = os.path.join(SHUFFLE_DATA, 'train_k{}.csv.gz'.format(k))
             for df in pd.read_csv(filename, chunksize=batchsize):
                 df['drawing'] = df['drawing'].apply(ast.literal_eval)
-                x = np.zeros((len(df), size, size, 1))
+                # x = np.zeros((len(df), size, size, 1)) # for MobileNet
+                x = np.zeros((len(df), size, size, 3)) # for ResNet50
                 for i, raw_strokes in enumerate(df.drawing.values):
                     x[i, :, :, 0] = draw_cv2(raw_strokes, size=size, lw=lw,
+                                             time_color=time_color)
+                    x[i, :, :, 1] = draw_cv2(raw_strokes, size=size, lw=lw,
+                                             time_color=time_color)
+                    x[i, :, :, 2] = draw_cv2(raw_strokes, size=size, lw=lw,
                                              time_color=time_color)
                 x = preprocess_input(x).astype(np.float32)
                 y = keras.utils.to_categorical(df.y, num_classes=NCATS)
