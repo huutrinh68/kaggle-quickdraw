@@ -79,7 +79,7 @@ def main():
     hists.append(hist)
 
     # show result
-    #show_result(hist)
+    show_result(hist)
 
     # validation
     valid_predictions = model.predict(x_valid, batch_size=128, verbose=1)
