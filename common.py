@@ -44,7 +44,7 @@ from tensorflow.keras.layers import Dense, Dropout, Flatten, Activation, GlobalA
 from tensorflow.keras.metrics import categorical_accuracy, top_k_categorical_accuracy, categorical_crossentropy
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam, Adadelta
 from tensorflow.keras.applications import MobileNet
 from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.applications.mobilenet import preprocess_input
