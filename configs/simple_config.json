@@ -1,6 +1,6 @@
 {
   "exp": {
-    "name": "simple_mnist"
+    "name": "simple"
   },
   "data_attr":{
     "num_classes": 340
@@ -11,7 +11,7 @@
   },
   "trainer":{
     "img_size": 64,
-    "num_epochs": 20,
+    "num_epochs": 2,
     "batch_size": 64,
     "validation_split":0.25,
     "verbose_training": true

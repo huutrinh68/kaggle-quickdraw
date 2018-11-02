@@ -40,25 +40,12 @@ def image_generator_xd(size, batchsize, ks, lw=6, time_color=True):
             filename = os.path.join(SHUFFLE_DATA, 'train_k{}.csv.gz'.format(k))
             for df in pd.read_csv(filename, chunksize=batchsize):
                 df['drawing'] = df['drawing'].apply(ast.literal_eval)
-                x = np.zeros((len(df), size, size, 1)) # for MobileNet
+                X_train = np.zeros((len(df), size, size, 1)) # for MobileNet
                 for i, raw_strokes in enumerate(df.drawing.values):
-                    x[i, :, :, 0] = draw_cv2(raw_strokes, size=size, lw=lw, time_color=time_color)
-                x = preprocess_input(x).astype(np.float32)
-                y = keras.utils.to_categorical(df.y, num_classes=340)
-                yield x, y
-
-class SimpleMnistDataLoader(BaseDataLoader):
-    def __init__(self, config):
-        super(SimpleMnistDataLoader, self).__init__(config)
-        (self.X_train, self.y_train), (self.X_test, self.y_test) = mnist.load_data()
-        self.X_train = self.X_train.reshape((-1, 28 * 28))
-        self.X_test = self.X_test.reshape((-1, 28 * 28))
-
-    def get_train_data(self):
-        return self.X_train, self.y_train
-
-    def get_test_data(self):
-        return self.X_test, self.y_test
+                    X_train[i, :, :, 0] = draw_cv2(raw_strokes, size=size, lw=lw, time_color=time_color)
+                X_train = preprocess_input(X_train).astype(np.float32)
+                y_train = keras.utils.to_categorical(df.y, num_classes=340)
+                yield X_train, y_train
 
 
 class MobileNetDataLoader(BaseDataLoader):
@@ -70,8 +57,7 @@ class MobileNetDataLoader(BaseDataLoader):
         self.train_datagen = image_generator_xd(size=size, batchsize=256, ks=range(NCSVS - 1))
 
     def get_train_data(self):
-        # return self.train_datagen.x, self.train_datagen.y
-        return self.X_test, self.y_test
+        return self.train_datagen
 
     def get_test_data(self):
         return self.X_test, self.y_test
