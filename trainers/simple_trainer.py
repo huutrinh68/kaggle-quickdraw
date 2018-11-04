@@ -3,8 +3,8 @@ import os
 from keras.callbacks import ModelCheckpoint, TensorBoard
 
 class MobileNetModelTrainer(BaseTrain):
-    def __init__(self, model, data, config):
-        super(MobileNetModelTrainer, self).__init__(model, data, config)
+    def __init__(self, model, data_train, data_test, config):
+        super(MobileNetModelTrainer, self).__init__(model, data_train, data_test, config)
         self.callbacks = []
         self.loss = []
         self.acc = []
@@ -40,9 +40,11 @@ class MobileNetModelTrainer(BaseTrain):
 
     def train(self):
         history = self.model.fit_generator(
-            self.data,
-            steps_per_epoch = 100,
+            generator=self.data_train,
             epochs=self.config.trainer.num_epochs,
+            steps_per_epoch = 100,
+            validation_data=self.data_test,
+            validation_steps=100,
             verbose=self.config.trainer.verbose_training,
             callbacks=self.callbacks,
         )

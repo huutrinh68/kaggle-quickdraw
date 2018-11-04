@@ -8,27 +8,8 @@ from keras.metrics import categorical_accuracy, top_k_categorical_accuracy, cate
 def top_3_accuracy(y_true, y_pred):
     return top_k_categorical_accuracy(y_true, y_pred, k=3)
 
-
-class SimpleMnistModel(BaseModel):
-    def __init__(self, config):
-        super(SimpleMnistModel, self).__init__(config)
-        self.build_model()
-
-    def build_model(self):
-        self.model = Sequential()
-        self.model.add(Dense(32, activation='relu', input_shape=(28 * 28,)))
-        self.model.add(Dense(16, activation='relu'))
-        self.model.add(Dense(10, activation='softmax'))
-
-        self.model.compile(
-            loss='sparse_categorical_crossentropy',
-            optimizer=self.config.model.optimizer,
-            metrics=['acc'],
-)
-
-
 class MobileNetModel(BaseModel):
-    def __init_(self, config):
+    def __init__(self, config):
         super(MobileNetModel, self).__init__(config)
         self.build_model()
     
@@ -38,5 +19,5 @@ class MobileNetModel(BaseModel):
         self.model.compile(
             optimizer=Adam(lr=0.002), 
             loss='categorical_crossentropy',
-            metrics=[categorical_crossentropy, categorical_accuracy, top_3_accuracy]
+            metrics=['acc', categorical_crossentropy, categorical_accuracy, top_3_accuracy]
         )
