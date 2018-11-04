@@ -15,9 +15,15 @@ class MobileNetModel(BaseModel):
     
     def build_model(self):
         img_size = self.config.trainer.img_size
-        self.model = MobileNet(input_shape=(img_size, img_size, 1), alpha=1., weights=None, classes=340)
+        num_classes = self.config.data_attr.num_classes
+        self.model = MobileNet(
+            input_shape=(img_size, img_size, 1), 
+            alpha=self.config.model.alpha, 
+            weights=None,
+            classes=num_classes
+        )
         self.model.compile(
-            optimizer=Adam(lr=0.002), 
-            loss='categorical_crossentropy',
-            metrics=['acc', categorical_crossentropy, categorical_accuracy, top_3_accuracy]
+            optimizer=Adam(lr=self.config.model.learning_rate), 
+            loss=self.config.trainer.loss,
+            metrics=["acc", categorical_crossentropy, categorical_accuracy, top_3_accuracy]
         )

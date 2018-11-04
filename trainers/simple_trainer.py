@@ -42,9 +42,9 @@ class MobileNetModelTrainer(BaseTrain):
         history = self.model.fit_generator(
             generator=self.data_train,
             epochs=self.config.trainer.num_epochs,
-            steps_per_epoch = 100,
+            steps_per_epoch = self.config.trainer.steps_per_epoch,
             validation_data=self.data_test,
-            validation_steps=100,
+            validation_steps=self.config.trainer.validation_steps,
             verbose=self.config.trainer.verbose_training,
             callbacks=self.callbacks,
         )
