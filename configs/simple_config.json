@@ -11,11 +11,11 @@
     "optimizer": "adam"
   },
   "trainer":{
-    "img_size": 64,
+    "img_size": 224,
     "num_epochs": 30,
-    "steps_per_epoch": 100,
-    "validation_steps": 100,
-    "batch_size": 128,
+    "steps_per_epoch": 1000,
+    "validation_steps": 400,
+    "batch_size": 64,
     "loss": "categorical_crossentropy",
     "verbose_training": true
   },
